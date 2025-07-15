@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from "../Utils/Header"
 import MetricCard from "../Utils/MetricCard"
 import TaskList from "../TaskList/TaskList"
 
-const EmployeeDashboard = ({currUser, setUser}) => {
+const EmployeeDashboard = ({currUser, setUser}:{currUser: any, setUser: any}) => {
 
-  const currUserData = currUser.data;
+  const [currUserData, setCurrUserData] = useState(currUser.data);
   
   return (
     <div className='w-screen h-max md:h-screen bg-[#1C1C1C] py-6 px-6 lg:px-8'>
@@ -17,7 +17,7 @@ const EmployeeDashboard = ({currUser, setUser}) => {
         <MetricCard digit={currUserData.TaskCount.completedTasks} desc='Completed Tasks' bgcolor='bg-green-800'/>
         <MetricCard digit={currUserData.TaskCount.failedTasks} desc='Failed Tasks' bgcolor='bg-red-800'/>
       </div>
-      <TaskList tasks={currUserData.tasks}/>
+      <TaskList id={currUserData.id} tasks={currUserData.tasks} setUserData={setCurrUserData}/>
     </div>
   )
 }

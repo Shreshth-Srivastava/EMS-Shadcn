@@ -2,8 +2,8 @@ import React,{useEffect, createContext, useState, type PropsWithChildren} from '
 import { getLocalStorage, setLocalStorage } from '@/utils/localStorage';
 
 interface AuthContextType {
-  employees: Object[];
-  admin: Object[];
+  employees: [];
+  admin: [];
 }
 
 export const AuthContext = createContext<AuthContextType | null>(null);

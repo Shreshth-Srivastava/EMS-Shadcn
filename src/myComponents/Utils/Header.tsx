@@ -1,6 +1,6 @@
 import React from "react";
 
-const Header = ({currUserData, setUser}) => {
+const Header = ({currUserData, setUser}:{currUserData:any, setUser:any}) => {
   const logout = () => {
     const loggedInUser = {role: "anonymous", data: null};
     localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));

@@ -2,15 +2,21 @@ import React ,{useState, useEffect,useContext} from 'react'
 import Login from './myComponents/Login'
 import EmployeeDashboard from "@/myComponents/Dashboard/EmployeeDashboard";
 import AdminDashboard from "@/myComponents/Dashboard/AdminDashboard";
-import { setLocalStorage, getLocalStorage } from "@/utils/localStorage";
 import { AuthContext } from "@/context/AuthProvider";
 
+interface User {
+  email: string;
+  password: string;
+  tasks: any;
+  TaskCount: any;
+}
+
 const App = () => {
-  const contextData = useContext(AuthContext);
+  const contextData = useContext<{employees:[], admin:[]} | null>(AuthContext);
   var loggedInUser = JSON.parse(localStorage.getItem("loggedInUser") ?? "null");
 
-  const [employeesData, setEmployeesData] = useState(null);
-  const [adminData, setAdminData] = useState(null);
+  const [employeesData, setEmployeesData] = useState<User[] | []>([]);
+  const [adminData, setAdminData] = useState<User[] | []>([]);
 
   useEffect(() => {
     if(contextData){
@@ -23,8 +29,8 @@ const App = () => {
   const [user, setUser] = useState(loggedInUser ? loggedInUser.role : null);
 
   const handleLogin = (email: string, password: string) => {
-    const employee = employeesData.find((e)=>email == e.email && password == e.password);
-    const admin = adminData.find((e)=>email == e.email && password == e.password);
+    const employee = employeesData?.find((e)=>email == e.email && password == e.password);
+    const admin = adminData?.find((e)=>email == e.email && password == e.password);
 
     if (employee) {
       loggedInUser.role = "user";

@@ -1,14 +1,21 @@
 import React, { useState } from "react";
 import Header from "../Utils/Header";
 
-const AdminDashboard = ({ currUser, setUser, employees }) => {
+interface User {
+  email: string;
+  password: string;
+  tasks: any;
+  TaskCount: any;
+}
+
+const AdminDashboard = ({ currUser, setUser, employees }:{currUser:any, setUser:React.Dispatch<any>, employees:User[] | []}) => {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [assignTo, setAssignTo] = useState("");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
 
-  const submitHandler = (e) => {
+  const submitHandler = (e:any) => {
     e.preventDefault();
     const newTask = {
       active: false,
@@ -21,7 +28,7 @@ const AdminDashboard = ({ currUser, setUser, employees }) => {
       task_category: category,
     };
 
-    const employee = employees.find((e) => e.firstName === assignTo);
+    const employee = employees.find((e:any) => e.firstName === assignTo);
 
     if (!employee) {
       alert("No Such Employee Exists!");
@@ -33,6 +40,7 @@ const AdminDashboard = ({ currUser, setUser, employees }) => {
 
     localStorage.setItem("employees", JSON.stringify(employees));
     alert("Task Sucessfully Assigned!");
+    window.location.reload();
   };
 
   const currUserData = currUser.data;
@@ -99,8 +107,8 @@ const AdminDashboard = ({ currUser, setUser, employees }) => {
         </div>
         <div className="w-full h-full px-2 pt-8 flex flex-col justify-start gap-6">
           <textarea
-            rows="10"
-            cols="10"
+            rows={10}
+            cols={10}
             value={description}
             onChange={(e) => {
               setDescription(e.target.value);
@@ -129,7 +137,7 @@ const AdminDashboard = ({ currUser, setUser, employees }) => {
         className="w-full h-max py-4 flex flex-col gap-4 overflow-auto"
       >
         {employees
-          ? employees.map((e, idx) => {
+          ? employees.map((e:any, idx) => {
               return (
                 <div
                   key={idx}

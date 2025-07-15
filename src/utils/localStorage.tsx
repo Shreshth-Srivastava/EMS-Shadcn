@@ -27,7 +27,7 @@ const employees = [
       },
       {
         active: true,
-        new_task: true,
+        new_task: false,
         completed: false,
         failed: false,
         task_title: "Client proposal draft",
@@ -37,7 +37,7 @@ const employees = [
       },
     ],
     TaskCount: {
-      newTasks: 1,
+      newTasks: 0,
       completedTasks: 1,
       acceptedTasks: 2,
       failedTasks: 0,
