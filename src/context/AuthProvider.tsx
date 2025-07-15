@@ -1,4 +1,4 @@
-import React,{useEffect, createContext, useState, type PropsWithChildren} from 'react'
+import {useEffect, createContext, useState, type PropsWithChildren} from 'react'
 import { getLocalStorage, setLocalStorage } from '@/utils/localStorage';
 
 interface AuthContextType {

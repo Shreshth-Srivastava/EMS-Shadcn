@@ -1,5 +1,3 @@
-import React from "react";
-
 const Header = ({currUserData, setUser}:{currUserData:any, setUser:any}) => {
   const logout = () => {
     const loggedInUser = {role: "anonymous", data: null};
